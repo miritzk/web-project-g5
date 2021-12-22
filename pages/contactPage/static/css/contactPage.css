@@ -1,0 +1,126 @@
+@import url();
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contact_grid {
+    background-color: var(--pale_pink);
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas:
+        'contact_header contact_header contact_header contact_header'
+        'address address map map'
+        'phone phone map map'
+        'email email map map'
+        'form form map map';
+}
+
+.contact_grid .content {
+    text-align: center;
+    justify-content: center;
+}
+
+.contact_grid .content p {
+    font-weight: 300;
+    text-align: center;
+}
+
+#contact_header {
+    grid-area: contact_header;
+}
+
+#contact_header h2 {
+    grid-area: contact_header;
+    margin-bottom: 10px;
+}
+
+.contact_grid .content.c1 {
+    border-radius: 20px;
+    background-color: var(--beigh);
+    box-shadow: 5px 5px rgb(77 60 39 / 50%);
+    padding-top: 10px;
+}
+
+#map {
+    grid-area: map;
+}
+
+#address {
+    grid-area: address;
+}
+
+#phone {
+    grid-area: phone;
+}
+
+#email {
+    grid-area: email;
+}
+
+#form {
+    grid-area: form;
+    background-color: var(--pink);
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    display: grid;
+    grid-gap: 10px;
+}
+
+.inputBox {
+    padding: 5px;
+}
+
+#input_full_name {
+    padding-left: 5px;
+    margin: 5px;
+}
+
+#input_email {
+    padding-left: 5px;
+    margin: 5px;
+}
+
+#input_message {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+}
+
+#send_btn {
+    grid-area: send_btn;
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .contact_grid {
+        grid-template-areas:
+            "contact_header"
+            "address"
+            "phone"
+            "email"
+            "form"
+            "map"
+    }
+}
+
+.header {
+    animation: fadeIn linear 7s;
+    -webkit-animation: fadeIn linear 7s;
+    -moz-animation: fadeIn linear 7s;
+    -o-animation: fadeIn linear 7s;
+    -ms-animation: fadeIn linear 7s;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
