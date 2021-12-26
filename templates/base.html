@@ -1,10 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Base</title>
-</head>
-<body>
+{#
+Base page variables:
+-- page_lang | default: 'en'
+#}
 
-</body>
+{#
+Base page blocks:
+- page_head
+-- title
+-- page_head_meta
+--- page_head_meta_extra
+-- page_head_css
+
+- body
+-- page_body_content
+--- page_body_header
+--- page_body_main
+-- page_body_js
+ #}
+
+<!DOCTYPE html>
+ <html lang="{{ page_lang | default('en', true) }}">
+    <head>
+    {% block page_head %}
+        {# Title #}
+        <title>{% block page_head_title %}Base{% endblock %}</title>
+
+        {# Meta tags #}
+        {% block page_head_meta %}
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            {% block page_head_meta_extra %} {% endblock %}
+        {% endblock %}
+
+        {# bootstrap #}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        {# Base #}
+        <base href="/"/>
+
+        {# CSS #}
+        <link rel="stylesheet" href="static/css/common.css">
+        {% block page_head_css %}{% endblock %}
+
+    {% endblock %}
+    </head>
+    <body>
+
+        {# Main Menu #}
+        {% include 'main_menu.html' %}
+
+        {% block page_body_content %}
+
+            {# Header #}
+            {% block page_body_header %} {% endblock %}
+
+            {# Main #}
+            {% block page_body_main %} {% endblock %}
+
+        {% endblock %}
+
+        {# Footer #}
+        {% include 'footer.html' %}
+
+        {# JS #}
+        {% block page_body_js %} {% endblock %}
+    </body>
 </html>
