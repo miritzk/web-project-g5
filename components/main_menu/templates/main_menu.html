@@ -1,20 +1,37 @@
-<link rel="stylesheet" href="{{ url_for('main_menu.static', filename='css/main-menu.css') }}"/>
+<!------------------------------------------- menu ------------------------------------------->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/homepage">
+      <img src="static/images/pilates.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Michal Pilates
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-{%
-    set menu_items = {
-        'homepage': '/',
-        'catalog': url_for('catalog.index'),
-        'about': url_for('about.index'),
-    }
-%}
-
-{% for item in menu_items %}
-    <li>
-        <a
-            href="{{ menu_items[item] }}"
-            {% if menu_items[item] == request.path %}
-                class="active"
-            {% endif %}
-        >{{ item | capitalize }}</a>
-    </li>
-{% endfor %}
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/price_list">Prices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/workouts">Workouts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/calendar">Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact_page">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Log In</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!------------------------------------------- end menu ------------------------------------------->
