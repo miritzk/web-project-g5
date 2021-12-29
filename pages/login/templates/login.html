@@ -13,7 +13,7 @@ Log in
   {# Main #}
   {% block page_body_main %}
   <div class="content">
-    <form action="profile.html" method='post'>
+    <form action="/profile" method='post'>
       <h1>Log in</h1>
       <p>Welcome back!</p>
       <!-- email -->
@@ -28,7 +28,7 @@ Log in
       <p id="error_msg"></p>
       <!-- log in btn -->
       <input type="submit" value="Log in" class="btn_general" id="Loginbtn" onclick="checkLogin()"><br><br>
-      <a href="signup.html" id="sign_up_link">Or Sign up here!</a>
+      <a href="/signup" id="sign_up_link">Or Sign up here!</a>
     </form>
   </div>
 
