@@ -22,14 +22,6 @@ class CustomerDAO(metaclass=Singleton):
               customer.city, customer.street, customer.apartmentNum, customer.postalCode))
         return ans == 1
 
-    # def find_by_id(self, id: str) -> Customer:
-    #     ans = self.db_manager.fetch("""
-    #         SELECT * FROM customers WHERE ID = %s
-    #     """, (id,))
-    #     if ans is None:
-    #         return None
-    #     ans = ans[0]
-    #     return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8], ans[9])
 
     def find_by_email(self, email: str) -> Customer:
         ans = self.db_manager.fetch("""
@@ -38,7 +30,7 @@ class CustomerDAO(metaclass=Singleton):
         if ans is None:
             return None
         ans = ans[0]
-        return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8])
+        return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8], ans[9], ans[10], ans[11], ans[12], ans[13], ans[14])
 
     def find_by_name(self, name: str):
         ans = self.db_manager.fetch("""
@@ -46,7 +38,7 @@ class CustomerDAO(metaclass=Singleton):
         """, (name,))
         if ans is None:
             return None
-        return [Customer(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]) for i in ans]
+        return [Customer(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14]) for i in ans]
 
     def login(self, email: str, password: str) -> Customer:
         ans = self.db_manager.fetch("""
@@ -55,7 +47,7 @@ class CustomerDAO(metaclass=Singleton):
         if len(ans) == 0:
             return False
         ans = ans[0]
-        return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8])
+        return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8], ans[9], ans[10], ans[11], ans[12], ans[13], ans[14])
 
     def update_details(self, fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email) -> bool:
         ans = self.db_manager.commit("""
@@ -66,9 +58,10 @@ class CustomerDAO(metaclass=Singleton):
         """, (fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email))
         return ans == 1
 
-    # def change_address(self, email: str, city: str, street: str, apartmentNum: str, postalCode: str) -> bool:
-    #     ans = self.db_manager.commit("""
-    #         UPDATE customers SET AddressCity = %s, AddressStreet = %s, AddressApartmentNum = %s, AddressPostalCode = %s WHERE Email = %s
-    #     """, (city, street, apartmentNum, postalCode, email))
-    #     return ans == 1
-
+    def update_card_info(self, NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email) -> bool:
+        ans = self.db_manager.commit("""
+            UPDATE customers 
+            SET NameOnCard = %s, CardOwnerID = %s, CreditCardNumber = %s, ExpMonth = %s, ExpYear = %s, CVV = %s
+            WHERE Email = %s
+        """, (NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email))
+        return ans == 1

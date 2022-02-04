@@ -38,7 +38,7 @@ function editForm() {
   document.getElementById("submitUpdate").hidden = false;
 }
 
-async function submitForm() {
+function submitForm() {
   arr = [
     document.getElementById("inputFullName"),
     document.getElementById("inputEmail"),
@@ -55,8 +55,8 @@ async function submitForm() {
   })
   document.getElementById("updateDetails").hidden = false;
   document.getElementById("submitUpdate").hidden = true;
-  console.log("test")
-  const response = await fetch('/profile/update_details',{
+
+  fetch('/profile/update_details',{
     method:'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -77,9 +77,12 @@ async function submitForm() {
 
 function editCardInfo() {
   arr = [
+    document.getElementById("inputNameOnCard"),
+    document.getElementById("inputCardOwnerId"),
     document.getElementById("inputCreditCard"),
-    document.getElementById("inputExpirationDate"),
-    document.getElementById("inputCVV"),
+    document.getElementById("inputExpirationMonth"),
+    document.getElementById("inputExpirationYear"),
+    document.getElementById("inputCVV")
   ]
   arr.forEach((element) => {
     element.disabled = false;
@@ -91,9 +94,12 @@ function editCardInfo() {
 
 function submitCardInfo() {
   arr = [
+    document.getElementById("inputNameOnCard"),
+    document.getElementById("inputCardOwnerId"),
     document.getElementById("inputCreditCard"),
-    document.getElementById("inputExpirationDate"),
-    document.getElementById("inputCVV"),
+    document.getElementById("inputExpirationMonth"),
+    document.getElementById("inputExpirationYear"),
+    document.getElementById("inputCVV")
   ]
   arr.forEach((element) => {
     element.disabled = true;
@@ -101,4 +107,19 @@ function submitCardInfo() {
   })
   document.getElementById("updateCardInfo").hidden = false;
   document.getElementById("submitCardInfo").hidden = true;
+
+  fetch('/profile/update_card_info',{
+    method:'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+      NameOnCard: document.getElementById("inputNameOnCard").value,
+      CardOwnerID: document.getElementById("inputCardOwnerId").value,
+      CreditCardNumber: document.getElementById("inputCreditCard").value,
+      ExpMonth: document.getElementById("inputExpirationMonth").value,
+      ExpYear: document.getElementById("inputExpirationYear").value,
+      CVV: document.getElementById("inputCVV").value
+    })
+  })
 }
