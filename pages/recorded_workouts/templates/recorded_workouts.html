@@ -1,60 +1,60 @@
 {% extends 'base.html' %}
 
 {% block page_head_title %}
-Recorded Workouts
+    Recorded Workouts
 {% endblock %}
 
 {% block page_head_css %}
-<link rel="stylesheet" href="{{ url_for('recorded_workouts.static', filename='css/recorded_workouts.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('recorded_workouts.static', filename='css/recorded_workouts.css') }}"/>
 {% endblock %}
 
 {% block page_body_content %}
-<div class='page_content'>
-  {# Header #}
-  {% block page_body_header %}
-  <div class="head">
-    <h2>Workout Recodings</h2>
-  </div>
-  {% endblock %}
+    <div class='page_content'>
+      {# Header #}
+      {% block page_body_header %}
+          <div class="head">
+            <h2>Workout Recodings</h2>
+          </div>
+      {% endblock %}
 
-  {# Main #}
-  {% block page_body_main %}
-  <div class="grid">
+      {# Main #}
+      {% block page_body_main %}
+          <div class="grid">
 
-    <div class="rec_workout" id="rw_1">
-      <h3>Classical Pilates</h3>
-      <!-- link to youtube -->
-      <iframe src="https://www.youtube.com/embed/yDDFS1kPplI"></iframe>
+            <div class="rec_workout" id="rw_1">
+              <h3>Classical Pilates</h3>
+              <!-- link to youtube -->
+              <iframe src="https://www.youtube.com/embed/yDDFS1kPplI"></iframe>
+            </div>
+
+            <div class="rec_workout" id="rw_2">
+              <h3>Mat Pilates</h3>
+              <!-- link to youtube -->
+              <iframe src="https://www.youtube.com/embed/Thjly0rt9j8"></iframe>
+            </div>
+
+            <div class="rec_workout" id="rw_3">
+              <h3>Reformer Pilates</h3>
+              <!-- link to youtube -->
+              <iframe src="https://www.youtube.com/embed/1sBF-9fLVDQ"></iframe>
+            </div>
+
+            <div class="rec_workout" id="rw_4">
+              <h3>Prenatal Pilates</h3>
+              <!-- link to youtube -->
+              <iframe src="https://www.youtube.com/embed/26NPMmROB2Q"></iframe>
+            </div>
+
+            <div class="more_info">
+              <p>For more, go visit us in our <a href="http://www.youtube.com/">Youtube</a> channel!</p>
+            </div>
+
+          </div>
+      {% endblock %}
     </div>
-
-    <div class="rec_workout" id="rw_2">
-      <h3>Mat Pilates</h3>
-      <!-- link to youtube -->
-      <iframe src="https://www.youtube.com/embed/Thjly0rt9j8"></iframe>
-    </div>
-
-    <div class="rec_workout" id="rw_3">
-      <h3>Reformer Pilates</h3>
-      <!-- link to youtube -->
-      <iframe src="https://www.youtube.com/embed/1sBF-9fLVDQ"></iframe>
-    </div>
-
-    <div class="rec_workout" id="rw_4">
-      <h3>Prenatal Pilates</h3>
-      <!-- link to youtube -->
-      <iframe src="https://www.youtube.com/embed/26NPMmROB2Q"></iframe>
-    </div>
-
-    <div class="more_info">
-      <p>For more, go visit us in our <a href="http://www.youtube.com/">Youtube</a> channel!</p>
-    </div>
-
-  </div>
-  {% endblock %}
-</div>
 {% endblock %}
 
 {# JS #}
 {% block page_body_js %}
-<script src="{{ url_for('calendar.static', filename='js/calendar.js') }}"></script>
+
 {% endblock %}
