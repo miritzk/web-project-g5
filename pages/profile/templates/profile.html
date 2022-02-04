@@ -86,6 +86,24 @@
                         <table>
                             <tr>
                                 <td class="row_head">
+                                    Card Owner Full Name:
+                                </td>
+                                <td>
+                                    <input type="text" id="inputNameOnCard" value="Carmel Ben Shoshan" class="nonEdit"
+                                           disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="row_head">
+                                    Card Owner ID Number:
+                                </td>
+                                <td>
+                                    <input type="text" id="inputCardOwnerId" value="206025843" class="nonEdit"
+                                           disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="row_head">
                                     Credit Card:
                                 </td>
                                 <td>
@@ -95,10 +113,18 @@
                             </tr>
                             <tr>
                                 <td class="row_head">
-                                    Expiration Date:
+                                    Expiration Month:
                                 </td>
                                 <td>
-                                    <input type="text" value="03/25" id="inputExpirationDate" class="nonEdit" disabled>
+                                    <input type="int" value=3 id="inputExpirationMonth" class="nonEdit" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="row_head">
+                                    Expiration Year:
+                                </td>
+                                <td>
+                                    <input type="int" value=2025 id="inputExpirationYear" class="nonEdit" disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -106,7 +132,7 @@
                                     CVV:
                                 </td>
                                 <td>
-                                    <input type="text" value="547" id="inputCVV" class="nonEdit" disabled>
+                                    <input type="int" value="547" id="inputCVV" class="nonEdit" disabled>
                                 </td>
                             </tr>
                         </table>
@@ -129,18 +155,21 @@
                                 <th>Order Date</th>
                                 <th>Product Type</th>
                                 <th>Order Price</th>
+                                <th>Entries Left</th>
                             </tr>
                             <tr>
                                 <td>1</td>
                                 <td>12/11/21</td>
                                 <td>Individual training</td>
                                 <td>40 ILS</td>
+                                <td>0</td>
                             </tr>
                             <tr>
                                 <td>2</td>
                                 <td>14/11/21</td>
                                 <td>Individual training</td>
                                 <td>40 ILS</td>
+                                <td>1</td>
                             </tr>
                         </table>
                     </div>
