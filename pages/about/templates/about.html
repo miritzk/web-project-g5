@@ -1,54 +1,72 @@
 {% extends 'base.html' %}
 
 {% block page_head_title %}
-About Us
+    About Us
 {% endblock %}
 
 {% block page_head_css %}
-  <link rel="stylesheet" href="{{ url_for('about.static', filename='css/about.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('about.static', filename='css/about.css') }}"/>
 {% endblock %}
 
 {% block page_body_content %}
+    <div class="page_content">
+        {# Header #}
+        {% block page_body_header %}
+            <div class="about_us_header">
+                <h2 class="header">About Us</h2>
+            </div>
+        {% endblock %}
 
-  {# Header #}
-  {% block page_body_header %}
-    <div class="about_us_header">
-      <h2 class="header">About Us</h2>
+        {# Main #}
+        {% block page_body_main %}
+            <div class="about_us_written">
+                <p>
+                    Michal Chelbonani is the owner of the studio and a Pilates instructor using the Stott Pilates
+                    method.
+                    Born in 1983, Michal is a professional dancer and was a choreographer in the past.
+                    Graduated with 5 years of cum laude from a choreographic college in Norway.
+                    Graduate of Basi Pilates School, Norway.
+                    Upon graduation, she joined Basi’s teaching staff.<br><br>
+                    Michal graduated from a course where she worked with pregnant and postpartum women, using the
+                    "support pyramid"
+                    method for stabilization and rehabilitation of the pelvic floor.
+                    Michal also graduated the Wingate Institute, College of Physical Education and Sports, as a
+                    design and toning
+                    instructor.<br>
+                    <br>
+                    In order to achieve the most effective results in the shortest possible time, Michal usually
+                    works in small
+                    groups
+                    while personally accompanying, ensuring accuracy and adjusting the exercises for the
+                    trainees.<br>
+                    <br>
+                    Michal believes that with dedication and a lot of love we can improve posture, range of motion
+                    and flexibility.
+                    Building and maintaining the body over time while improving our trainees’ lifestyle and outlook
+                    on life is part
+                    of our mission at Michal’s studio.<br><br>
+                </p>
+            </div>
+            <img width=30% src="static/images/aboutPic1.jpeg" alt="stop motion" id="p_1"><br><br>
+        {% endblock %}
     </div>
-  {% endblock %}
+{% endblock %}
 
-  {# Main #}
-  {% block page_body_main %}
-   <div class="page_content">
-
-    <div class="about_us_written">
-      <p>
-        Michal Chelbonani is the owner of the studio and a Pilates instructor using the Stott Pilates method.
-        Born in 1983, Michal is a professional dancer and was a choreographer in the past.
-        Graduated with 5 years of cum laude from a choreographic college in Norway.
-        Graduate of Basi Pilates School, Norway.
-        Upon graduation, she joined Basi’s teaching staff.<br><br>
-        Michal graduated from a course where she worked with pregnant and postpartum women, using the "support pyramid"
-        method for stabilization and rehabilitation of the pelvic floor.
-        Michal also graduated the Wingate Institute, College of Physical Education and Sports, as a design and toning
-        instructor.<br>
-        <br>
-        In order to achieve the most effective results in the shortest possible time, Michal usually works in small
-        groups
-        while personally accompanying, ensuring accuracy and adjusting the exercises for the trainees.<br>
-        <br>
-        Michal believes that with dedication and a lot of love we can improve posture, range of motion and flexibility.
-        Building and maintaining the body over time while improving our trainees’ lifestyle and outlook on life is part
-        of our mission at Michal’s studio.<br><br>
-      </p>
-    </div>
-
-
-    <img width=30% src="images/aboutPic1.jpeg" alt="stop motion" id="p_1"><br><br>
-
-  </div>
-  {% endblock %}
-
+{# JS #}
+{% block page_body_js %}
+    <script>
+        const image1 = "{{ url_for('about.static', filename='images/aboutPic1.jpeg') }}"
+        const image2 = "{{ url_for('about.static', filename='images/aboutPic2.jpeg') }}"
+        const image3 = "{{ url_for('about.static', filename='images/aboutPic3.jpeg') }}"
+        const image4 = "{{ url_for('about.static', filename='images/aboutPic4.jpeg') }}"
+        const image5 = "{{ url_for('about.static', filename='images/aboutPic5.jpeg') }}"
+        const image6 = "{{ url_for('about.static', filename='images/aboutPic6.jpeg') }}"
+        const image7 = "{{ url_for('about.static', filename='images/aboutPic7.jpeg') }}"
+        const image8 = "{{ url_for('about.static', filename='images/aboutPic8.jpeg') }}"
+        const image9 = "{{ url_for('about.static', filename='images/aboutPic9.jpeg') }}"
+        const image10 = "{{ url_for('about.static', filename='images/aboutPic10.jpeg') }}"
+    </script>
+    <script src="{{ url_for('about.static', filename='js/about.js') }}"></script>
 {% endblock %}
 
 

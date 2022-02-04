@@ -1,68 +1,73 @@
 {% extends 'base.html' %}
 
 {% block page_head_title %}
-Price list
+    Price list
 {% endblock %}
 
 {% block page_head_css %}
- <link rel="stylesheet" href="{{ url_for('price_list.static', filename='css/price_list.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('price_list.static', filename='css/price_list.css') }}"/>
 {% endblock %}
 
 {% block page_body_content %}
+    <div class="page_content">
+        {# Header #}
+        {% block page_body_header %}
+            <div class="about_us_header">
+                <h2>Prices</h2>
+            </div>
+        {% endblock %}
 
-  {# Main #}
-  {% block page_body_main %}
-   <div class="page_content">
-    <div class="about_us_header">
-      <h2>Prices</h2>
+        {# Main #}
+        {% block page_body_main %}
+            <div class="price_list">
+                <h4>List of possible routes:</h4>
+                <form action="/payment_page"><!--method="post"-->
+                    <!-- Individual training -->
+                    <input type="radio" id="individual" name="product" value="individual" class="radio" required>
+                    <label for="individual">
+                        Individual
+                        training................................................................................................40
+                        ILS
+                    </label><br>
+                    <!-- Multiple entrance ticket of 5 -->
+                    <input type="radio" id="Multiple_5" name="product" value="Multiple_5" class="radio">
+                    <label for="Multiple_5">
+                        Multiple entrance ticket of
+                        5..............................................................................180
+                        ILS
+                    </label><br>
+                    <!-- Multiple entrance ticket of 10 -->
+                    <input type="radio" id="Multiple_10" name="product" value="Multiple_10" class="radio">
+                    <label for="Multiple_10">
+                        Multiple entrance ticket of
+                        10............................................................................350
+                        ILS
+                    </label><br>
+                    <!-- Multiple entrance ticket of 20 -->
+                    <input type="radio" id="Multiple_20" name="product" value="Multiple_20" class="radio">
+                    <label for="Multiple_20">
+                        Multiple entrance ticket of
+                        20............................................................................600
+                        ILS
+                    </label><br>
+                    <!-- Personal workout -->
+                    <input type="radio" id="presonal" name="product" value="presonal" class="radio">
+                    <label for="presonal">
+                        Personal
+                        workout..............................................................................................120
+                        ILS
+                    </label><br><br>
+                    <input class="btn_general" type="submit" value="Quick purchase">
+                    <!--        <div class="purchase_btn">-->
+                    <!--          <button class="btn_general" onclick="window.location.href='payment_page.html'">Quick purchase</button>-->
+                    <!--        </div>-->
+                </form>
+            </div>
+        {% endblock %}
     </div>
-
-    <div class="price_list">
-      <h4>List of possible routes:</h4>
-      <form action="payment_page.html" method="post">
-        <!-- Individual training -->
-        <input type="radio" id="individual" name="product" value="individual" class="radio" required>
-        <label for="individual">
-          Individual
-          training................................................................................................40 ILS
-        </label><br>
-        <!-- Multiple entrance ticket of 5 -->
-        <input type="radio" id="Multiple_5" name="product" value="Multiple_5" class="radio">
-        <label for="Multiple_5">
-          Multiple entrance ticket of 5..............................................................................180
-          ILS
-        </label><br>
-        <!-- Multiple entrance ticket of 10 -->
-        <input type="radio" id="Multiple_10" name="product" value="Multiple_10" class="radio">
-        <label for="Multiple_10">
-          Multiple entrance ticket of 10............................................................................350
-          ILS
-        </label><br>
-        <!-- Multiple entrance ticket of 20 -->
-        <input type="radio" id="Multiple_20" name="product" value="Multiple_20" class="radio">
-        <label for="Multiple_20">
-          Multiple entrance ticket of 20............................................................................600
-          ILS
-        </label><br>
-        <!-- Personal workout -->
-        <input type="radio" id="presonal" name="product" value="presonal" class="radio">
-        <label for="presonal">
-          Personal
-          workout..............................................................................................120 ILS
-        </label><br><br>
-        <input class="btn_general" type="submit" value="Quick purchase">
-<!--        <div class="purchase_btn">-->
-<!--          <button class="btn_general" onclick="window.location.href='payment_page.html'">Quick purchase</button>-->
-<!--        </div>-->
-      </form>
-    </div>
-  </div>
-
-  {% endblock %}
-
 {% endblock %}
 
 
 {% block page_body_js %}
     <script src="{{ url_for('price_list.static', filename='js/price_list.js') }}"></script>
-  {% endblock %}
+{% endblock %}

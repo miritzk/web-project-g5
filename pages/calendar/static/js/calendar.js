@@ -22,7 +22,8 @@ const events = [
         start: '08:00',
         description: "",
         duration: class_duration,
-        color: mat_color
+        color: mat_color,
+        available_space: 6
     },
     {
         id: "1",
@@ -31,7 +32,8 @@ const events = [
         start: '08:00',
         description: "",
         duration: class_duration,
-        color: mat_color
+        color: mat_color,
+        available_space: 8
     },
     {
         id: "1",
@@ -40,7 +42,8 @@ const events = [
         start: '08:00',
         description: "",
         duration: class_duration,
-        color: mat_color
+        color: mat_color,
+        available_space: 10
     },
     {
         id: "1",
@@ -49,7 +52,8 @@ const events = [
         start: '08:00',
         description: "",
         duration: class_duration,
-        color: mat_color
+        color: mat_color,
+        available_space: 3
     },
     {
         id: "2",
@@ -58,7 +62,8 @@ const events = [
         start: '09:00',
         description: "",
         duration: class_duration,
-        color: classic_color
+        color: classic_color,
+        available_space: 6
     },
     {
         id: "2",
@@ -67,7 +72,8 @@ const events = [
         start: '09:00',
         description: "",
         duration: class_duration,
-        color: classic_color
+        color: classic_color,
+        available_space: 12
     },
     {
         id: "2",
@@ -76,7 +82,8 @@ const events = [
         start: '09:00',
         description: "",
         duration: class_duration,
-        color: classic_color
+        color: classic_color,
+        available_space: 12
     },
     {
         id: "2",
@@ -85,7 +92,8 @@ const events = [
         start: '09:00',
         description: "",
         duration: class_duration,
-        color: classic_color
+        color: classic_color,
+        available_space: 14
     },
     {
         id: "3",
@@ -94,7 +102,8 @@ const events = [
         start: '10:00',
         description: "",
         duration: class_duration,
-        color: reformer_color
+        color: reformer_color,
+        available_space: 2
     },
     {
         id: "3",
@@ -103,7 +112,8 @@ const events = [
         start: '10:00',
         description: "",
         duration: class_duration,
-        color: reformer_color
+        color: reformer_color,
+        available_space: 12
     },
     {
         id: "3",
@@ -112,7 +122,8 @@ const events = [
         start: '10:00',
         description: "",
         duration: class_duration,
-        color: reformer_color
+        color: reformer_color,
+        available_space: 5
     }
 
 ]
@@ -183,7 +194,7 @@ function generateCal(divId = "calendar", halfHourCellHeight = 20, events = event
         let eventMoment = moment(event.date + event.start, "DD/MM/YYYYHH:mm")
         evDiv = document.createElement("div")
         evDiv.className = "event";
-        evDiv.innerHTML = `<span className='event-title'>${event.title}</span><span className='event-description'>${event.description}</span>`;
+        evDiv.innerHTML = `<span className='event-title'>${event.title}</span><span className='event-available-space'>${event.available_space ? event.available_space : 0 }</span>`;
         if (event.color) {
             evDiv.style.backgroundColor = event.color;
         }

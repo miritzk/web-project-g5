@@ -1,26 +1,24 @@
 // -- stop motion exp -- //
 
-var images = ["images/aboutPic2.jpeg",
-    "images/aboutPic3.jpeg",
-    "images/aboutPic4.jpeg",
-    "images/aboutPic5.jpeg",
-    "images/aboutPic6.jpeg",
-    "images/aboutPic7.jpeg",
-    "images/aboutPic8.jpeg",
-    "images/aboutPic9.jpeg",
-    "images/aboutPic10.jpeg"];
+var images = [
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image6,
+    image7,
+    image8,
+    image9,
+    image10,
+];
 var i = 0;
 
 function stopmotionloop() {
-    setTimeout(() => {
-        document.getElementById("p_1").src = images[i];
+    setInterval(() => {
+        document.getElementById("p_1").src = images[i%images.length];
         i++;
-        if (i < images.length) {
-            stopmotionloop();
-        }
-        else {
-            i = 0;
-            stopmotionloop();
-        }
     }, 1500)
 }
+
+stopmotionloop();
