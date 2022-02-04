@@ -45,7 +45,7 @@ app.register_blueprint(login)
 from pages.signup.signup import signup
 app.register_blueprint(signup)
 
-# Signup
+# Profile
 from pages.profile.profile import profile
 app.register_blueprint(profile)
 
