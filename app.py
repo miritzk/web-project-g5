@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, session, redirect
 
 ###### App setup
 app = Flask(__name__)
@@ -63,6 +63,12 @@ app.register_blueprint(main_menu)
 from components.footer.footer import footer
 app.register_blueprint(footer)
 
+@app.route('/logout', methods=['GET'])
+def index():
+    session["user"] = ''
+    return redirect('/')
+
 
 if __name__ == '__main__':
+    app.secret_key = '123'
     app.run(debug=True)

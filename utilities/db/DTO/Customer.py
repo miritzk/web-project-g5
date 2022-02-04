@@ -4,19 +4,18 @@ import utilities.db.DAO.OrdersDAO as PaymentsDAO
 
 
 class Customer:
-    def __init__(self, email: str, fullName: str, id: int, joinDate: datetime.date, birthday: datetime.date,
-                 password: str, city: str, street: str, apartmentNum: int, postalCode: str,
+    def __init__(self, email: str, fullName: str, joinDate: datetime.date, password: str,
+                 phoneNumber: str, city: str, street: str, apartmentNum: int, postalCode: str,
                  NameOnCard=None, CreditCardNumber=None, ExpMonth=None, ExpYear=None, CVV=None, CardOwnerID=None):
         self.email = email
         self.fullName = fullName
-        self.id = id
         self.joinDate = joinDate
-        self.birthday = birthday
+        self.password = password
+        self.phoneNumber = phoneNumber
         self.city = city
         self.street = street
         self.apartmentNum = apartmentNum
         self.postalCode = postalCode
-        self.password = password
         self.NameOnCard = NameOnCard
         self.CreditCardNumber = CreditCardNumber
         self.ExpMonth = ExpMonth
@@ -27,8 +26,8 @@ class Customer:
 
     def __str__(self):
         return "Customer: " + self.fullName + " email:" + self.email + " pass:" + self.password + " city:" + self.city + " street:" + self.street + " apartmentNum:" + str(
-            self.apartmentNum) + " postalCode:" + str(self.postalCode) + " birthday:" + str(
-            self.birthday) + " joinDate:" + str(self.joinDate)
+            self.apartmentNum) + " postalCode:" + str(self.postalCode) + " phoneNumber:" + str(
+            self.phoneNumber) + " joinDate:" + str(self.joinDate)
 
     def changePassword(self, newPassword: str) -> bool:
         self.password = newPassword
@@ -46,13 +45,16 @@ class Customer:
         return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
 
 
+def update_details(fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email):
+    return CustomerDAO.CustomerDAO().update_details(fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email)
+
 def login(email: str, password: str) -> Customer:
     return CustomerDAO.CustomerDAO().login(email, password)
 
 
-def register(email: str, fullName: str, id: str, password: str, birthday: datetime.date, city: str, street: str,
+def register(email: str, fullName: str, password: str, phoneNumber: str, city: str, street: str,
              apartmentNum: int, postalCode: str) -> Customer:
-    customer = Customer(email, fullName, id, datetime.date.today(), birthday, password, city, street, apartmentNum,
+    customer = Customer(email, fullName, datetime.date.today(), password, phoneNumber, city, street, apartmentNum,
                         postalCode)
     if CustomerDAO.CustomerDAO().create(customer):
         return customer

@@ -23,7 +23,6 @@ function openTab(evt, id) {
 function editForm() {
   arr = [
     document.getElementById("inputFullName"),
-    document.getElementById("inputEmail"),
     document.getElementById("inputPhoneNumber"),
     document.getElementById("inputCity"),
     document.getElementById("inputStreet"),
@@ -39,7 +38,7 @@ function editForm() {
   document.getElementById("submitUpdate").hidden = false;
 }
 
-function submitForm() {
+async function submitForm() {
   arr = [
     document.getElementById("inputFullName"),
     document.getElementById("inputEmail"),
@@ -56,6 +55,23 @@ function submitForm() {
   })
   document.getElementById("updateDetails").hidden = false;
   document.getElementById("submitUpdate").hidden = true;
+  console.log("test")
+  const response = await fetch('/profile/update_details',{
+    method:'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+      email: document.getElementById("inputEmail").value,
+      fullName: document.getElementById("inputFullName").value,
+      password: document.getElementById("inputPassword").value,
+      phoneNumber: document.getElementById("inputPhoneNumber").value,
+      addressCity: document.getElementById("inputCity").value,
+      addressStreet: document.getElementById("inputStreet").value,
+      addressApartmentNum: document.getElementById("inputAprtNum").value,
+      addressPostalCode: document.getElementById("inputZipCode").value
+    })
+  })
 }
 
 
