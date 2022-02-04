@@ -24,7 +24,7 @@
 }
 
 .headerContainer {
-    background-image: linear-gradient(to bottom, rgba(56, 55, 55, 0.7), rgba(56, 55, 55, 0.7)), url("static/images/pilatespic.png");
+    background-image: linear-gradient(to bottom, rgba(56, 55, 55, 0.7), rgba(56, 55, 55, 0.7)), url("../images/pilatespic.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

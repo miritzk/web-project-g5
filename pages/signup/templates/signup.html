@@ -1,74 +1,79 @@
 {% extends 'base.html' %}
 
 {% block page_head_title %}
-Sign up
+    Sign up
 {% endblock %}
 
 {% block page_head_css %}
- <link rel="stylesheet" href="{{ url_for('signup.static', filename='css/signup.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('signup.static', filename='css/signup.css') }}"/>
 {% endblock %}
 
 {% block page_body_content %}
 
-  {# Main #}
-  {% block page_body_main %}
-  <div class="content">
-    <form action="Profile.html" method='post' onsubmit="return SignUp()">
-      <h1>Sign up</h1>
-      <p><br> Welcome to Michal's Pilates! <br>
-        Please fill in the following details:</p>
+    {# Main #}
+    {% block page_body_main %}
+        <div class="content">
+            <form action="/profile" method='post' onsubmit="return SignUp()">
+                <h1>Sign up</h1>
+                <p><br> Welcome to Michal's Pilates! <br>
+                    Please fill in the following details:</p>
 
-      <label class="" for="name"><b>Full name:</b></label><br>
-      <input class="user_input" name="name" id="name" placeholder="Enter name and last name" required type="text"><br>
+                <label class="" for="name"><b>Full name:</b></label><br>
+                <input class="user_input" name="name" id="name" placeholder="Enter name and last name" required
+                       type="text"><br>
 
-      <label class="" for="email"><b>Email Address:</b></label><br>
-      <input class="user_input" name="email" id="email" placeholder="Enter your email address" required type="email"
-        pattern="\S+@\S+\.\S+"><br>
+                <label class="" for="email"><b>Email Address:</b></label><br>
+                <input class="user_input" name="email" id="email" placeholder="Enter your email address" required
+                       type="email"
+                       pattern="\S+@\S+\.\S+"><br>
 
-      <label class="" for="psw"><b>Password: (at least 6 characters)</b></label><br>
-      <input class="user_input" name="psw" id="psw" placeholder="Enter your password" required type="password"
-        minlength="6" onkeyup="checkpsw()"><br>
+                <label class="" for="psw"><b>Password: (at least 6 characters)</b></label><br>
+                <input class="user_input" name="psw" id="psw" placeholder="Enter your password" required type="password"
+                       minlength="6" onkeyup="checkpsw()"><br>
 
-      <label class="" for="psw-repeat"><b>Verify Password:</b></label><br>
-      <input class="user_input" name="psw-repeat" id="psw-repeat" placeholder="Repeat the password" required
-        type="password" minlength="6" onkeyup="checkpsw()"><br>
+                <label class="" for="psw-repeat"><b>Verify Password:</b></label><br>
+                <input class="user_input" name="psw-repeat" id="psw-repeat" placeholder="Repeat the password" required
+                       type="password" minlength="6" onkeyup="checkpsw()"><br>
 
-      <label class="" for="phone"><b>Phone Number:</b></label><br>
-      <input class="user_input" name="phone" id="phone" placeholder="Enter a phone number" required type="phone"><br>
+                <label class="" for="phone"><b>Phone Number:</b></label><br>
+                <input class="user_input" name="phone" id="phone" placeholder="Enter a phone number" required
+                       type="phone"><br>
 
-      <label class="" for="city"><b>City:</b></label><br>
-      <input class="user_input" name="city" id="city" placeholder="Enter a city" required type="text"><br>
+                <label class="" for="city"><b>City:</b></label><br>
+                <input class="user_input" name="city" id="city" placeholder="Enter a city" required type="text"><br>
 
-      <label class="" for="street"><b>Street:</b></label><br>
-      <input class="user_input" name="street" id="street" placeholder="Enter Street" required type="text"><br>
+                <label class="" for="street"><b>Street:</b></label><br>
+                <input class="user_input" name="street" id="street" placeholder="Enter Street" required type="text"><br>
 
-      <label class="" for="apartment"><b>Apartment number:</b></label><br>
-      <input class="user_input" name="apartment" id="apartment" placeholder="Enter an apartment number" required
-        type="text"><br>
+                <label class="" for="apartment"><b>Apartment number:</b></label><br>
+                <input class="user_input" name="apartment" id="apartment" placeholder="Enter an apartment number"
+                       required
+                       type="text"><br>
 
-      <label class="" for="postalcode"><b>Postal Code:</b></label><br>
-      <input class="user_input" name="postalcode" id="postalcode" placeholder="Enter postal code" required
-        type="text"><br>
+                <label class="" for="postalcode"><b>Postal Code:</b></label><br>
+                <input class="user_input" name="postalcode" id="postalcode" placeholder="Enter postal code" required
+                       type="text"><br>
 
-      <!-- error message box -->
-      <span id='message'></span><br><br>
+                <!-- error message box -->
+                <span id='message'></span><br><br>
 
-      <label class="container_form">
-        <input name="remember" style="margin-bottom:15px" type="checkbox"> I confirm receipt of news and updates by
-        email
-      </label>
+                <label class="container_form">
+                    <input name="remember" style="margin-bottom:15px" type="checkbox"> I confirm receipt of news and
+                    updates by
+                    email
+                </label>
 
-      <!-- sign up btn -->
-      <input type="submit" value="Registration" class="btn_general" id="reg_btn" onclick="SignUp()"><br><br>
+                <!-- sign up btn -->
+                <input type="submit" value="Registration" class="btn_general" id="reg_btn" onclick="SignUp()"><br><br>
 
-    </form>
-  </div>
+            </form>
+        </div>
 
-  {% endblock %}
+    {% endblock %}
 
 {% endblock %}
 
 
 {% block page_body_js %}
     <script src="{{ url_for('signup.static', filename='js/signup.js') }}"></script>
-  {% endblock %}
+{% endblock %}
