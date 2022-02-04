@@ -29,17 +29,6 @@ class Customer:
             self.apartmentNum) + " postalCode:" + str(self.postalCode) + " phoneNumber:" + str(
             self.phoneNumber) + " joinDate:" + str(self.joinDate)
 
-    def changePassword(self, newPassword: str) -> bool:
-        self.password = newPassword
-        return CustomerDAO.CustomerDAO().change_password(self.email, newPassword)
-
-    def changeAddress(self, city: str, street: str, apartmentNum: int, postalCode: str) -> bool:
-        self.city = city
-        self.street = street
-        self.apartmentNum = apartmentNum
-        self.postalCode = postalCode
-        return CustomerDAO.CustomerDAO().change_address(self.email, city, street, apartmentNum, postalCode)
-
     @property
     def payments(self):
         return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
@@ -55,7 +44,6 @@ def update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYea
 
 def login(email: str, password: str) -> Customer:
     return CustomerDAO.CustomerDAO().login(email, password)
-
 
 def register(email: str, fullName: str, password: str, phoneNumber: str, city: str, street: str,
              apartmentNum: int, postalCode: str) -> Customer:

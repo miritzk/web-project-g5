@@ -5,130 +5,23 @@ const classic_color = "rgb(155, 158, 163)";
 const classic_pilates = "Classic Pilates";
 const reformer_color = "#abbdb0";
 const reformer_pilates = "Reformer Pilates";
-const events = [
-    {
-        id: "1",
-        title: mat_pilates,
-        date: moment().startOf('week').format("DD/MM/YYYY"),
-        start: '08:00',
-        description: "",
-        duration: class_duration,
-        color: mat_color
-    },
-    {
-        id: "1",
-        title: mat_pilates,
-        date: moment().startOf('week').add(1, 'day').format("DD/MM/YYYY"),
-        start: '08:00',
-        description: "",
-        duration: class_duration,
-        color: mat_color,
-        available_space: 6
-    },
-    {
-        id: "1",
-        title: mat_pilates,
-        date: moment().startOf('week').add(2, 'day').format("DD/MM/YYYY"),
-        start: '08:00',
-        description: "",
-        duration: class_duration,
-        color: mat_color,
-        available_space: 8
-    },
-    {
-        id: "1",
-        title: mat_pilates,
-        date: moment().startOf('week').add(3, 'day').format("DD/MM/YYYY"),
-        start: '08:00',
-        description: "",
-        duration: class_duration,
-        color: mat_color,
-        available_space: 10
-    },
-    {
-        id: "1",
-        title: mat_pilates,
-        date: moment().startOf('week').add(4, 'day').format("DD/MM/YYYY"),
-        start: '08:00',
-        description: "",
-        duration: class_duration,
-        color: mat_color,
-        available_space: 3
-    },
-    {
-        id: "2",
-        title: classic_pilates,
-        date: moment().startOf('week').add(2, 'day').format("DD/MM/YYYY"),
-        start: '09:00',
-        description: "",
-        duration: class_duration,
-        color: classic_color,
-        available_space: 6
-    },
-    {
-        id: "2",
-        title: classic_pilates,
-        date: moment().startOf('week').add(3, 'day').format("DD/MM/YYYY"),
-        start: '09:00',
-        description: "",
-        duration: class_duration,
-        color: classic_color,
-        available_space: 12
-    },
-    {
-        id: "2",
-        title: classic_pilates,
-        date: moment().startOf('week').add(4, 'day').format("DD/MM/YYYY"),
-        start: '09:00',
-        description: "",
-        duration: class_duration,
-        color: classic_color,
-        available_space: 12
-    },
-    {
-        id: "2",
-        title: classic_pilates,
-        date: moment().startOf('week').add(5, 'day').format("DD/MM/YYYY"),
-        start: '09:00',
-        description: "",
-        duration: class_duration,
-        color: classic_color,
-        available_space: 14
-    },
-    {
-        id: "3",
-        title: reformer_pilates,
-        date: moment().startOf('week').add(1, 'day').format("DD/MM/YYYY"),
-        start: '10:00',
-        description: "",
-        duration: class_duration,
-        color: reformer_color,
-        available_space: 2
-    },
-    {
-        id: "3",
-        title: reformer_pilates,
-        date: moment().startOf('week').add(2, 'day').format("DD/MM/YYYY"),
-        start: '10:00',
-        description: "",
-        duration: class_duration,
-        color: reformer_color,
-        available_space: 12
-    },
-    {
-        id: "3",
-        title: reformer_pilates,
-        date: moment().startOf('week').add(3, 'day').format("DD/MM/YYYY"),
-        start: '10:00',
-        description: "",
-        duration: class_duration,
-        color: reformer_color,
-        available_space: 5
-    }
 
-]
-
-function generateCal(divId = "calendar", halfHourCellHeight = 20, events = events, startHour = 6, endHour = 22) {
+async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHour = 6, endHour = 22) {
+    let response = await fetch('/calendar/get_events', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            startTime: moment().startOf("week").format("YYYY-MM-DD"),
+            endTime: moment().endOf("week").format("YYYY-MM-DD")
+        })
+    })
+    const data = (await response.json());
+    const events = data.events
+    const canOrder = data.canOrder
+    console.log(canOrder)
+    console.log(events)
     let cal = document.querySelector(`#${divId}`);
     const today = moment();
     const from_date = today.startOf('week');
@@ -191,23 +84,49 @@ function generateCal(divId = "calendar", halfHourCellHeight = 20, events = event
     }
 
     events.forEach(event => {
-        let eventMoment = moment(event.date + event.start, "DD/MM/YYYYHH:mm")
+        let eventMoment = moment(event.dateTime)
+        event.duration = 1;
         evDiv = document.createElement("div")
         evDiv.className = "event";
-        evDiv.innerHTML = `<span className='event-title'>${event.title}</span><span className='event-available-space'>${event.available_space ? event.available_space : 0 }</span>`;
+        evDiv.innerHTML = `<span className='event-title'>${event.workoutType}</span><span className='event-available-space'>${event.spotsLeft ? event.spotsLeft : 0}</span>`;
         if (event.color) {
             evDiv.style.backgroundColor = event.color;
         }
         let eventCell = document.querySelector(`#day-${eventMoment.day()}-hour-${eventMoment.hour() * 10}`);
         eventCell.appendChild(evDiv);
         eventCell.style.height = halfHourCellHeight * 2 * event.duration + "px";
-        eventCell.addEventListener("click", () => {
-            // what to do on click on the event:
-            ans = confirm("Whould you like to join this class?");
-            if (ans) {
-                console.log("You joined the class successfuly");
+        if((canOrder.personal && event.workoutType == 'Personal Workout') || (event.workoutType != 'Personal Workout' && canOrder.other) ) {
+            eventCell.addEventListener("click", () => {
+                // what to do on click on the event:
+                ans = confirm(`Whould you like to join this class with ${event.instructorName}?`);
+                if (ans) {
+                    response = fetch('/calendar/order_class', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            workoutTime: eventMoment.utc().format('YYYY-MM-DD HH:mm:ss'),
+                            workoutType: event.workoutType
+                        })
+                    })
+                }
+            })
+        }
+        else {
+            if(event.workoutType == 'Personal Workout') {
+                eventCell.addEventListener("click", () => {
+                    // what to do on click on the event:
+                    alert("You have to buy a personal workout first, go to the Prices tab");
+                })
             }
-        })
+            else {
+                eventCell.addEventListener("click", () => {
+                    // what to do on click on the event:
+                    alert("You have to buy an Entry Ticket first, go to the Prices tab");
+                })
+            }
+        }
         for (let i = eventMoment.hour() + 0.5; i < eventMoment.hour() + event.duration; i += 0.5) {
             let halfHourCell = document.querySelector(`#day-${eventMoment.day()}-hour-${i * 10}`); // FIXME: 0.5 doesnt parss right
             halfHourCell.remove();
@@ -215,5 +134,5 @@ function generateCal(divId = "calendar", halfHourCellHeight = 20, events = event
     });
 }
 
-generateCal("calendar", 40, events, 6, 22);
+generateCal("calendar", 40, 6, 22);
 console.log("hi")
