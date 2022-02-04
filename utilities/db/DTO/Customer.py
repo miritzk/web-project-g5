@@ -1,12 +1,12 @@
 import datetime
 import utilities.db.DAO.CustomerDAO as CustomerDAO
-import utilities.db.DAO.PaymentsDAO as PaymentsDAO
+import utilities.db.DAO.OrdersDAO as PaymentsDAO
 
 
 class Customer:
     def __init__(self, email: str, fullName: str, id: int, joinDate: datetime.date, birthday: datetime.date,
-                 password: str, city: str, street: str,
-                 apartmentNum: int, postalCode: str):
+                 password: str, city: str, street: str, apartmentNum: int, postalCode: str,
+                 NameOnCard=None, CreditCardNumber=None, ExpMonth=None, ExpYear=None, CVV=None, CardOwnerID=None):
         self.email = email
         self.fullName = fullName
         self.id = id
@@ -17,6 +17,13 @@ class Customer:
         self.apartmentNum = apartmentNum
         self.postalCode = postalCode
         self.password = password
+        self.NameOnCard = NameOnCard
+        self.CreditCardNumber = CreditCardNumber
+        self.ExpMonth = ExpMonth
+        self.ExpYear = ExpYear
+        self.CVV = CVV
+        self.CardOwnerID = CardOwnerID
+
 
     def __str__(self):
         return "Customer: " + self.fullName + " email:" + self.email + " pass:" + self.password + " city:" + self.city + " street:" + self.street + " apartmentNum:" + str(
@@ -36,7 +43,7 @@ class Customer:
 
     @property
     def payments(self):
-        return PaymentsDAO.PaymentsDAO().getPaymentsByUser(self)
+        return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
 
 
 def login(email: str, password: str) -> Customer:
