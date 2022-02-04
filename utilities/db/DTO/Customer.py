@@ -44,9 +44,14 @@ class Customer:
     def payments(self):
         return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
 
+def get_customer_by_email(email):
+    return CustomerDAO.CustomerDAO().find_by_email(email)
 
 def update_details(fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email):
     return CustomerDAO.CustomerDAO().update_details(fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email)
+
+def update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email):
+    return CustomerDAO.CustomerDAO().update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email)
 
 def login(email: str, password: str) -> Customer:
     return CustomerDAO.CustomerDAO().login(email, password)

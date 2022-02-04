@@ -12,7 +12,7 @@ function checkpsw() {
 
 function SignUp() {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const nameRegex = /^[a-zA-Z]+$/;
+    const nameRegex = /^[a-zA-Z\s]*$/;
     const phoneRegex = /^[0-9]{10}$/;
     const numbersRegex = /^[0-9]+$/;
 
