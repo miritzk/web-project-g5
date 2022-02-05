@@ -65,3 +65,25 @@ class CustomerDAO(metaclass=Singleton):
             WHERE Email = %s
         """, (NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email))
         return ans == 1
+
+    def retrieve_entry_tickets(self, email):
+        ans = self.db_manager.fetch("""
+            select TicketId, u.OrderID, TicketType, Price, o.PurchaseDate, NumOfEntriesLeft
+            from userentrytickets u
+            join orders o
+                on u.OrderID = o.OrderId
+            where u.CustomerEmail = %s
+            order by TicketId desc
+        """, (email,))
+        return ans
+
+    def retrieve_workouts(self, email):
+        ans = self.db_manager.fetch("""
+            select w.TicketId, w.WorkoutType, w.WorkoutDT
+            from workoutsintickets w
+            join userentrytickets u
+                on u.TicketId = w.TicketId
+            where CustomerEmail = %s
+            order by workoutDT desc
+        """, (email,))
+        return ans

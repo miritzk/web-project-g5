@@ -22,16 +22,17 @@ class Customer:
         self.ExpYear = ExpYear
         self.CVV = CVV
         self.CardOwnerID = CardOwnerID
-
+        self.entryTickets = CustomerDAO.CustomerDAO().retrieve_entry_tickets(self.email)
+        self.workouts = CustomerDAO.CustomerDAO().retrieve_workouts(self.email)
 
     def __str__(self):
         return "Customer: " + self.fullName + " email:" + self.email + " pass:" + self.password + " city:" + self.city + " street:" + self.street + " apartmentNum:" + str(
             self.apartmentNum) + " postalCode:" + str(self.postalCode) + " phoneNumber:" + str(
             self.phoneNumber) + " joinDate:" + str(self.joinDate)
 
-    @property
-    def payments(self):
-        return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
+    # @property
+    # def payments(self):
+    #     return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
 
 def get_customer_by_email(email):
     return CustomerDAO.CustomerDAO().find_by_email(email)
