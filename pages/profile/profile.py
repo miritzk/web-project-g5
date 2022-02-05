@@ -20,6 +20,6 @@ def updateCardInfo():
 
 @profile.route('/profile', methods=['GET'])
 def index():
-    print(vars(get_customer_by_email(session['user'])))
+    # print(vars(get_customer_by_email(session['user'])))
     return render_template('profile.html', customer=get_customer_by_email(session['user']))
 

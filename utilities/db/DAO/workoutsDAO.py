@@ -42,12 +42,14 @@ class WorkoutsDAO(metaclass=Singleton):
     # checks whether the customer is capable to order
     def canOrder(self, email):
         ans = self.db_manager.fetch("""
-        select CustomerEmail,
+        select Email,
                sum(case when TicketType = 'Personal workout' then NumOfEntriesLeft else 0 end) as personalSpots,
                sum(case when TicketType != 'Personal workout' then NumOfEntriesLeft else 0 end) as otherSpots
-        from userentrytickets
-        where CustomerEmail = %s
-        group by CustomerEmail
+        from customers c
+        left join userentrytickets ut
+            on c.Email = ut.CustomerEmail
+        where Email = %s
+        group by Email
         """, (email,))
         return {'personal': ans[0][1] > 0, 'other': ans[0][2] > 0}
 
@@ -111,6 +113,7 @@ class WorkoutsDAO(metaclass=Singleton):
         """, (workoutTime, workoutType, email))
         return len(ans) == 0
 
+    # get all the workout types for the price list tab
     def get_workout_price_list(self):
         ans = self.db_manager.fetch("""
         select TicketType, Price
@@ -119,6 +122,7 @@ class WorkoutsDAO(metaclass=Singleton):
         """)
         return ans
 
+    # get all the links for the recorded workouts tab
     def get_recorded_workouts(self):
         ans = self.db_manager.fetch("""
         select VideoTitle, VideoLink

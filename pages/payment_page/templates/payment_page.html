@@ -51,19 +51,19 @@
                                 <i class="fa fa-cc-discover" style="color:orange;"></i>
                             </div>
                             <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="cardname" placeholder="" required value="{{ customer.NameOnCard }}">
+                            <input type="text" id="cname" name="cardname" placeholder="Fill Name on Card" required {% if customer.NameOnCard != None %}value="{{ customer.NameOnCard }}"{% endif %}>
                             <label for="ccnum">Credit card number</label>
-                            <input required type="text" id="ccnum" name="cardnumber" placeholder="" required value="{{ customer.CreditCardNumber}}">
+                            <input required type="text" id="ccnum" name="cardnumber" placeholder="Fill Credit Card" required {% if customer.CreditCardNumber != None %}value="{{ customer.CreditCardNumber}}"{% endif %}>
                             <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="expmonth" placeholder="" required value="{{ customer.ExpMonth}}">
+                            <input type="text" id="expmonth" name="expmonth" placeholder="Fill Expiry Month" required {% if customer.ExpMonth != None %}value="{{ customer.ExpMonth}}"{% endif %}>
                             <div class="row">
                                 <div class="col-50">
                                     <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="" required value="{{ customer.ExpYear }}">
+                                    <input type="text" id="expyear" name="expyear" placeholder="Fill Expiry Year" required {% if customer.ExpMonth != None %}value="{{ customer.ExpYear }}"{% endif %}>
                                 </div>
                                 <div class="col-50">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" required value="{{ customer.CVV }}">
+                                    <input type="text" id="cvv" name="cvv" placeholder="Fill CVV" required {% if customer.CVV != None %}value="{{ customer.CVV }}"{% endif %}>
                                 </div>
                             </div>
                         </div>

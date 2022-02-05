@@ -8,15 +8,18 @@ class Workout:
         self.color = color
         self.instructorName = instructorName
 
+# get workouts of the current week
 def getWorkoutsByDates(startDate, endDate):
     return WorkoutsDao.WorkoutsDAO().getWorkoutsByDates(startDate, endDate)
 
+# checks whether a user has enough entries to book a workout (general and personal workouts)
 def canUserOrder(email):
     if email == '' or email is None:
         return {'personal':False,'other':False}
     else:
         return WorkoutsDao.WorkoutsDAO().canOrder(email)
 
+# book a workout (general and personal workouts)
 def order_class(email, workoutTime, workoutType):
     if WorkoutsDao.WorkoutsDAO().check_customer_assignee(email,workoutTime,workoutType):
         if workoutType == 'Personal Workout':

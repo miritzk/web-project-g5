@@ -1,0 +1,30 @@
+TicketId ,CustomerEmail ,OrderID ,NumOfEntriesLeft ,TicketType ,Price 
+1,sapir@gmail.com,9001,0,Individual training,40
+2,carmel@gmail.com,9002,0,Multiple entrance ticket of 5,180
+3,mirit@gmail.com,9003,1,Multiple entrance ticket of 10,350
+4,roei@gmail.com,9004,11,Multiple entrance ticket of 20,600
+5,omer@gmail.com,9005,0,Personal workout,120
+6,jennifer@gmail.com,9006,0,Individual training,40
+7,mika@gmail.com,9007,0,Multiple entrance ticket of 5,180
+8,inbar@gmail.com,9008,5,Multiple entrance ticket of 10,350
+9,aviv@gmail.com,9009,9,Multiple entrance ticket of 20,600
+10,alexa@gmail.com,9010,0,Personal workout,120
+11,ruby@gmail.com,9011,0,Individual training,40
+12,pula@gmail.com,9012,0,Multiple entrance ticket of 5,180
+13,noa@gmail.com,9013,2,Multiple entrance ticket of 10,350
+14,john@gmail.com,9014,10,Multiple entrance ticket of 20,600
+15,christian@gmail.com,9015,0,Personal workout,120
+16,morgan@gmail.com,9016,10,Multiple entrance ticket of 20,600
+17,denzel@gmail.com,9017,0,Personal workout,120
+18,will@gmail.com,9018,0,Individual training,40
+19,brad@gmail.com,9019,2,Multiple entrance ticket of 5,180
+20,sapir@gmail.com,9020,13,Multiple entrance ticket of 20,600
+21,carmel@gmail.com,9021,0,Personal workout,120
+22,mirit@gmail.com,9022,0,Individual training,40
+23,roei@gmail.com,9023,2,Multiple entrance ticket of 5,180
+24,omer@gmail.com,9024,10,Multiple entrance ticket of 20,600
+25,jennifer@gmail.com,9025,0,Personal workout,120
+26,mika@gmail.com,9026,0,Individual training,40
+27,inbar@gmail.com,9027,0,Personal workout,120
+28,aviv@gmail.com,9028,0,Individual training,40
+29,alexa@gmail.com,9029,1,Multiple entrance ticket of 5,180
