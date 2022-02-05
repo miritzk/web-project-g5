@@ -14,11 +14,13 @@
   {% block page_body_header %}
       <div class="page_content">
         <h2 class="header">Weekly Classes Schedule</h2>
-        {% if session.user %}
-          <p> Book a spot by clicking on an workout </p>
-        {% else %}
-          <p> To book a spot - Log in or Sign up first</p>
-        {% endif %}
+      </div>
+      <div>
+          {% if session.user %}
+              <p> Book a spot by clicking on a workout </p>
+          {% else %}
+              <p> To book a spot - Log in or Sign up first</p>
+          {% endif %}
       </div>
   {% endblock %}
 
