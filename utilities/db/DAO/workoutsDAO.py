@@ -110,3 +110,11 @@ class WorkoutsDAO(metaclass=Singleton):
         and CustomerEmail = %s
         """, (workoutTime, workoutType, email))
         return len(ans) == 0
+
+    def get_workout_price_list(self):
+        ans = self.db_manager.fetch("""
+        select TicketType, Price
+        from entryTickets
+        order by price
+        """)
+        return ans

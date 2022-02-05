@@ -18,11 +18,11 @@
 
   {# Main #}
   {% block page_body_main %}
-
+    {{ all_args }}
     <div class="row">
         <div class="col-75">
             <div class="container">
-                <form method="post" onsubmit="return allLetter()">
+                <form action="/payment_page/make_payment" method="post" onsubmit="return allLetter()">
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>
@@ -60,11 +60,11 @@
                             <div class="row">
                                 <div class="col-50">
                                     <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="" required value="{{ customer.ExpYear}}">
+                                    <input type="text" id="expyear" name="expyear" placeholder="" required value="{{ customer.ExpYear }}">
                                 </div>
                                 <div class="col-50">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="" required value="{{ customer.CVV}}">
+                                    <input type="text" id="cvv" name="cvv" required value="{{ customer.CVV }}">
                                 </div>
                             </div>
                         </div>
@@ -72,6 +72,7 @@
                     <label>
                         <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                     </label>
+                    <input type="text" id="ticketType" name="ticketType" value="{{ ticketType }}" hidden/>
                     <input id="confirm_pay_btn" type="submit" value="Confirm Payment" class="btn">
                 </form>
             </div>

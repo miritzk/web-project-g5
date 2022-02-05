@@ -113,9 +113,9 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
                     }).then((response)=>{
                         response.json().then((data)=>{
                             if(data.status)
-                                alert("Done")
+                                alert("You were signed up successfully!")
                             else
-                                alert("error")
+                                alert("You have already booked a spot for this workout, see you then!")
                             generateCal("calendar", 40, 6, 22);
                         })
                     })

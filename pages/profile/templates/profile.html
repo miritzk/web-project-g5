@@ -152,26 +152,23 @@
                     <div class="info_container">
                         <table>
                             <tr>
-                                <th>Order Id</th>
-                                <th>Order Date</th>
-                                <th>Product Type</th>
-                                <th>Order Price</th>
+                                <th>TicketId</th>
+                                <th>OrderID</th>
+                                <th>Ticket Type</th>
+                                <th>Price</th>
+                                <th>Purchase Date</th>
                                 <th>Entries Left</th>
                             </tr>
+                            {% for i in customer.entryTickets %}
                             <tr>
-                                <td>1</td>
-                                <td>12/11/21</td>
-                                <td>Individual training</td>
-                                <td>40 ILS</td>
-                                <td>0</td>
+                                <td>{{ i[0] }}</td>
+                                <td>{{ i[1] }}</td>
+                                <td>{{ i[2] }}</td>
+                                <td>{{ i[3] }}</td>
+                                <td>{{ i[4] }}</td>
+                                <td>{{ i[5] }}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>14/11/21</td>
-                                <td>Individual training</td>
-                                <td>40 ILS</td>
-                                <td>1</td>
-                            </tr>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
@@ -184,26 +181,20 @@
                     <div class="info_container">
                         <table>
                             <tr>
-                                <th>Order Id</th>
-                                <th>Order Date</th>
-                                <th>Product Type</th>
-                                <th>Order Price</th>
-                                <th>Entries Left</th>
+                                <th>TicketId</th>
+                                <th>Workout Type</th>
+                                <th>Workout Datetime</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>12/11/21</td>
-                                <td>Individual training</td>
-                                <td>40 ILS</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>14/11/21</td>
-                                <td>Individual training</td>
-                                <td>40 ILS</td>
-                                <td>1</td>
-                            </tr>
+                            {% for i in customer.workouts %}
+                                <tr>
+                                    <td>{{ i[0] }}</td>
+                                    <td>{{ i[1] }}</td>
+                                    <td>{{ i[2] }}</td>
+                                    <td>{{ i[3] }}</td>
+                                    <td>{{ i[4] }}</td>
+                                    <td>{{ i[5] }}</td>
+                                </tr>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>
