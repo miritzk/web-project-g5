@@ -91,7 +91,7 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
         if (event.color) {
             evDiv.style.backgroundColor = event.color;
         }
-        let eventCell = document.querySelector(`#day-${eventMoment.day()}-hour-${eventMoment.hour() * 10}`);
+        let eventCell = document.querySelector(`#day-${eventMoment.day()}-hour-${eventMoment.utc().hour() * 10}`);
         eventCell.appendChild(evDiv);
         eventCell.style.height = halfHourCellHeight * 2 * event.duration + "px";
         if(event.spotsLeft != 0)

@@ -61,11 +61,13 @@ function SignUp() {
         return false;
     }
 
-    if (!postalcode.match(numbersRegex)) {
-        alert('Postal code must contain only numbers');
+    if (!postalcode.match(numbersRegex) || postalcode.length < 5 || postalcode.length > 5) {
+        if (!postalcode.match(numbersRegex))
+            alert('Postal code must contain only numbers');
+        else
+            alert('Postal code must contain 5 digits');
         return false;
     }
-
 
     if ((name != "") && (/\S+@\S+\.\S+/.test(email)) &&
         (email != "") && (color == 'green') &&

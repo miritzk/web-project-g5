@@ -150,6 +150,7 @@
                 <hr>
                 <div class="tabcontent_grid_container">
                     <div class="info_container">
+                    {% if customer.entryTickets %}
                         <table>
                             <tr>
                                 <th>TicketId</th>
@@ -170,6 +171,10 @@
                             </tr>
                             {% endfor %}
                         </table>
+                    {% else %}
+                        <p>You don't have any Entry Tickets yet <br>
+                            To purchase - check out the Prices tab</p>
+                    {% endif %}
                     </div>
                 </div>
             </div>
@@ -179,23 +184,27 @@
                 <hr>
                 <div class="tabcontent_grid_container">
                     <div class="info_container">
-                        <table>
-                            <tr>
-                                <th>TicketId</th>
-                                <th>Workout Type</th>
-                                <th>Workout Datetime</th>
-                            </tr>
-                            {% for i in customer.workouts %}
+                        {% if customer.workouts %}
+                            <table>
                                 <tr>
-                                    <td>{{ i[0] }}</td>
-                                    <td>{{ i[1] }}</td>
-                                    <td>{{ i[2] }}</td>
-                                    <td>{{ i[3] }}</td>
-                                    <td>{{ i[4] }}</td>
-                                    <td>{{ i[5] }}</td>
+                                    <th>TicketId</th>
+                                    <th>Workout Type</th>
+                                    <th>Workout Datetime</th>
                                 </tr>
-                            {% endfor %}
-                        </table>
+                                {% for i in customer.workouts %}
+                                    <tr>
+                                        <td>{{ i[0] }}</td>
+                                        <td>{{ i[1] }}</td>
+                                        <td>{{ i[2] }}</td>
+                                        <td>{{ i[3] }}</td>
+                                        <td>{{ i[4] }}</td>
+                                        <td>{{ i[5] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% else %}
+                            <p>You don't have history of workouts</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
