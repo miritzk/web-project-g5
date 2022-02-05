@@ -118,3 +118,11 @@ class WorkoutsDAO(metaclass=Singleton):
         order by price
         """)
         return ans
+
+    def get_recorded_workouts(self):
+        ans = self.db_manager.fetch("""
+        select VideoTitle, VideoLink
+        from recordedWorkouts
+        order by VideoTitle
+        """)
+        return ans

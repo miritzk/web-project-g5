@@ -22,7 +22,6 @@ class CustomerDAO(metaclass=Singleton):
               customer.city, customer.street, customer.apartmentNum, customer.postalCode))
         return ans == 1
 
-
     def find_by_email(self, email: str) -> Customer:
         ans = self.db_manager.fetch("""
             SELECT * FROM customers WHERE Email = %s
