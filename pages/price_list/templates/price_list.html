@@ -21,51 +21,21 @@
         {% block page_body_main %}
             <div class="price_list">
                 <h4>List of possible routes:</h4>
+                <br>
                 <form action="/payment_page"><!--method="post"-->
-                    <!-- Individual training -->
-                    <input type="radio" id="individual" name="product" value="individual" class="radio" required>
-                    <label for="individual">
-                        Individual
-                        training................................................................................................40
-                        ILS
-                    </label><br>
-                    <!-- Multiple entrance ticket of 5 -->
-                    <input type="radio" id="Multiple_5" name="product" value="Multiple_5" class="radio">
-                    <label for="Multiple_5">
-                        Multiple entrance ticket of
-                        5..............................................................................180
-                        ILS
-                    </label><br>
-                    <!-- Multiple entrance ticket of 10 -->
-                    <input type="radio" id="Multiple_10" name="product" value="Multiple_10" class="radio">
-                    <label for="Multiple_10">
-                        Multiple entrance ticket of
-                        10............................................................................350
-                        ILS
-                    </label><br>
-                    <!-- Multiple entrance ticket of 20 -->
-                    <input type="radio" id="Multiple_20" name="product" value="Multiple_20" class="radio">
-                    <label for="Multiple_20">
-                        Multiple entrance ticket of
-                        20............................................................................600
-                        ILS
-                    </label><br>
-                    <!-- Personal workout -->
-                    <input type="radio" id="presonal" name="product" value="presonal" class="radio">
-                    <label for="presonal">
-                        Personal
-                        workout..............................................................................................120
-                        ILS
-                    </label><br><br>
+                    {% for workout in workouts %}
+                        <input type="radio" id="{{ workout[0] }}" name="product" value="{{ workout[0] }}" class="radio" required>
+                        <label for="{{ workout[0] }}">
+                            {{ workout[0] }} .......................................... {{ workout[1] }} ILS
+                        </label><br>
+                    {% endfor %}
+                    <br>
                     {% if session.user %}
                         <input class="btn_general" type="submit" value="Quick purchase">
                     {% else %}
                         <p>To purchase - please Log in or Sign up first</p>
                         <input class="btn_general" type="submit" value="Quick purchase" disabled>
                     {% endif %}
-                    <!--        <div class="purchase_btn">-->
-                    <!--          <button class="btn_general" onclick="window.location.href='payment_page.html'">Quick purchase</button>-->
-                    <!--        </div>-->
                 </form>
             </div>
         {% endblock %}
