@@ -57,7 +57,12 @@
                         workout..............................................................................................120
                         ILS
                     </label><br><br>
-                    <input class="btn_general" type="submit" value="Quick purchase">
+                    {% if session.user %}
+                        <input class="btn_general" type="submit" value="Quick purchase">
+                    {% else %}
+                        <p>To purchase - please Log in or Sign up first</p>
+                        <input class="btn_general" type="submit" value="Quick purchase" disabled>
+                    {% endif %}
                     <!--        <div class="purchase_btn">-->
                     <!--          <button class="btn_general" onclick="window.location.href='payment_page.html'">Quick purchase</button>-->
                     <!--        </div>-->
