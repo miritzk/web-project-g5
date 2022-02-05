@@ -18,7 +18,10 @@ def canUserOrder(email):
         return WorkoutsDao.WorkoutsDAO().canOrder(email)
 
 def order_class(email, workoutTime, workoutType):
-    if workoutType == 'Personal Workout':
-        WorkoutsDao.WorkoutsDAO().order_class_personal(email, workoutTime, workoutType)
-    else:
-        WorkoutsDao.WorkoutsDAO().order_class_other(email, workoutTime, workoutType)
+    if WorkoutsDao.WorkoutsDAO().check_customer_assignee(email,workoutTime,workoutType):
+        if workoutType == 'Personal Workout':
+            WorkoutsDao.WorkoutsDAO().order_class_personal(email, workoutTime, workoutType)
+        else:
+            WorkoutsDao.WorkoutsDAO().order_class_other(email, workoutTime, workoutType)
+        return True
+    return False

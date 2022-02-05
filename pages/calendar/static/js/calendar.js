@@ -20,8 +20,6 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
     const data = (await response.json());
     const events = data.events
     const canOrder = data.canOrder
-    console.log(canOrder)
-    console.log(events)
     let cal = document.querySelector(`#${divId}`);
     cal.innerHTML='';
     const today = moment();
@@ -96,7 +94,9 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
         let eventCell = document.querySelector(`#day-${eventMoment.day()}-hour-${eventMoment.hour() * 10}`);
         eventCell.appendChild(evDiv);
         eventCell.style.height = halfHourCellHeight * 2 * event.duration + "px";
-        if ((canOrder.personal && event.workoutType == 'Personal Workout') || (event.workoutType != 'Personal Workout' && canOrder.other) ) {
+        if(event.spotsLeft != 0)
+            eventCell.classList.add("pressable");
+        if (event.spotsLeft>0 && ((canOrder.personal && event.workoutType == 'Personal Workout') || (event.workoutType != 'Personal Workout' && canOrder.other) )) {
             eventCell.addEventListener("click", () => {
                 // what to do on click on the event:
                 ans = confirm(`Whould you like to join this class with ${event.instructorName}?`);
@@ -110,19 +110,25 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
                             workoutTime: eventMoment.utc().format('YYYY-MM-DD HH:mm:ss'),
                             workoutType: event.workoutType
                         })
-                    }).then(()=>{
-                        generateCal("calendar", 40, 6, 22);
+                    }).then((response)=>{
+                        response.json().then((data)=>{
+                            if(data.status)
+                                alert("Done")
+                            else
+                                alert("error")
+                            generateCal("calendar", 40, 6, 22);
+                        })
                     })
                 }
             })
         }
-        else if (event.workoutType == 'Personal Workout') {
+        else if (event.spotsLeft>0 && event.workoutType == 'Personal Workout') {
             eventCell.addEventListener("click", () => {
                 // what to do on click on the event:
                 alert("You have to buy a personal workout first, go to the Prices tab");
             })
         }
-        else {
+        else if ( event.spotsLeft>0 ) {
             eventCell.addEventListener("click", () => {
                 // what to do on click on the event:
                 alert("You have to buy an Entry Ticket first, go to the Prices tab");

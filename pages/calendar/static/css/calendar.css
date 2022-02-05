@@ -100,11 +100,15 @@
     color: white;
     padding-left: 7%;
     padding-top: 5%;
-    cursor: pointer;
     /*box-shadow: 5px 10px #888888;*/
 }
 
-.calendar .day-column .day-hours .event:hover {
+.calendar .day-column .day-hours .pressable{
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.calendar .day-column .day-hours .pressable:hover {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
