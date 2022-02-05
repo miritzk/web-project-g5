@@ -1,31 +1,37 @@
 {% extends 'base.html' %}
 
 {% block page_head_title %}
-Weekly Classes
+    Weekly Classes
 {% endblock %}
+
 {% block page_head_css %}
-<link rel="stylesheet" href="{{ url_for('calendar.static', filename='css/calendar.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('calendar.static', filename='css/calendar.css') }}"/>
 {% endblock %}
 
 {% block page_body_content %}
 
   {# Header #}
   {% block page_body_header %}
-  <div class="page_content">
-    <h2 class="header">Weekly Classes Schedule</h2>
-  </div>
+      <div class="page_content">
+        <h2 class="header">Weekly Classes Schedule</h2>
+        {% if session.user %}
+          <p> Book a spot by clicking on an workout </p>
+        {% else %}
+          <p> To book a spot - Log in or Sign up first</p>
+        {% endif %}
+      </div>
   {% endblock %}
 
   {# Main #}
   {% block page_body_main %}
-  <!-- weekly class calendar -->
-  <div class="calendar" id="calendar">
-  </div>
+      <!-- weekly class calendar -->
+      <div class="calendar" id="calendar">
+      </div>
   {% endblock %}
 
 {% endblock %}
 
 {# JS #}
 {% block page_body_js %}
-<script src="{{ url_for('calendar.static', filename='js/calendar.js') }}"></script>
+    <script src="{{ url_for('calendar.static', filename='js/calendar.js') }}"></script>
 {% endblock %}
