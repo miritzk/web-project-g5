@@ -1,7 +1,5 @@
 import datetime
 import utilities.db.DAO.CustomerDAO as CustomerDAO
-import utilities.db.DAO.OrdersDAO as PaymentsDAO
-
 
 class Customer:
     def __init__(self, email: str, fullName: str, joinDate: datetime.date, password: str,
@@ -30,9 +28,6 @@ class Customer:
             self.apartmentNum) + " postalCode:" + str(self.postalCode) + " phoneNumber:" + str(
             self.phoneNumber) + " joinDate:" + str(self.joinDate)
 
-    # @property
-    # def payments(self):
-    #     return PaymentsDAO.OrdersDAO().getPaymentsByUser(self)
 
 def get_customer_by_email(email):
     return CustomerDAO.CustomerDAO().find_by_email(email)
@@ -43,11 +38,11 @@ def update_details(fullName, password, phoneNumber, addressCity, addressStreet, 
 def update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email):
     return CustomerDAO.CustomerDAO().update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email)
 
-def login(email: str, password: str) -> Customer:
+def login(email: str, password: str):
     return CustomerDAO.CustomerDAO().login(email, password)
 
 def register(email: str, fullName: str, password: str, phoneNumber: str, city: str, street: str,
-             apartmentNum: int, postalCode: str) -> Customer:
+             apartmentNum: int, postalCode: str):
     customer = Customer(email, fullName, datetime.date.today(), password, phoneNumber, city, street, apartmentNum,
                         postalCode)
     if CustomerDAO.CustomerDAO().create(customer):

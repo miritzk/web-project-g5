@@ -13,7 +13,7 @@
       {# Header #}
       {% block page_body_header %}
           <div class="head">
-            <h2>Workout Recodings</h2>
+            <h2>Workout Recordings</h2>
           </div>
       {% endblock %}
 
@@ -21,29 +21,13 @@
       {% block page_body_main %}
           <div class="grid">
 
-            <div class="rec_workout" id="rw_1">
-              <h3>Classical Pilates</h3>
-              <!-- link to youtube -->
-              <iframe src="https://www.youtube.com/embed/yDDFS1kPplI"></iframe>
-            </div>
-
-            <div class="rec_workout" id="rw_2">
-              <h3>Mat Pilates</h3>
-              <!-- link to youtube -->
-              <iframe src="https://www.youtube.com/embed/Thjly0rt9j8"></iframe>
-            </div>
-
-            <div class="rec_workout" id="rw_3">
-              <h3>Reformer Pilates</h3>
-              <!-- link to youtube -->
-              <iframe src="https://www.youtube.com/embed/1sBF-9fLVDQ"></iframe>
-            </div>
-
-            <div class="rec_workout" id="rw_4">
-              <h3>Prenatal Pilates</h3>
-              <!-- link to youtube -->
-              <iframe src="https://www.youtube.com/embed/26NPMmROB2Q"></iframe>
-            </div>
+            {% for video in workouts %}
+              <div class="rec_workout">
+                  <h3>{{ video[0] }}</h3>
+                  <!-- link to youtube -->
+                  <iframe src="{{ video[1] }}"></iframe>
+              </div>
+            {% endfor %}
 
             <div class="more_info">
               <p>For more, go visit us in our <a href="http://www.youtube.com/">Youtube</a> channel!</p>
