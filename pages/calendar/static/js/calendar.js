@@ -23,6 +23,7 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
     console.log(canOrder)
     console.log(events)
     let cal = document.querySelector(`#${divId}`);
+    cal.innerHTML='';
     const today = moment();
     const from_date = today.startOf('week');
     let header = cal.appendChild(document.createElement("div"));
@@ -95,7 +96,7 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
         let eventCell = document.querySelector(`#day-${eventMoment.day()}-hour-${eventMoment.hour() * 10}`);
         eventCell.appendChild(evDiv);
         eventCell.style.height = halfHourCellHeight * 2 * event.duration + "px";
-        if((canOrder.personal && event.workoutType == 'Personal Workout') || (event.workoutType != 'Personal Workout' && canOrder.other) ) {
+        if ((canOrder.personal && event.workoutType == 'Personal Workout') || (event.workoutType != 'Personal Workout' && canOrder.other) ) {
             eventCell.addEventListener("click", () => {
                 // what to do on click on the event:
                 ans = confirm(`Whould you like to join this class with ${event.instructorName}?`);
@@ -109,23 +110,23 @@ async function generateCal(divId = "calendar", halfHourCellHeight = 20, startHou
                             workoutTime: eventMoment.utc().format('YYYY-MM-DD HH:mm:ss'),
                             workoutType: event.workoutType
                         })
+                    }).then(()=>{
+                        generateCal("calendar", 40, 6, 22);
                     })
                 }
             })
         }
+        else if (event.workoutType == 'Personal Workout') {
+            eventCell.addEventListener("click", () => {
+                // what to do on click on the event:
+                alert("You have to buy a personal workout first, go to the Prices tab");
+            })
+        }
         else {
-            if(event.workoutType == 'Personal Workout') {
-                eventCell.addEventListener("click", () => {
-                    // what to do on click on the event:
-                    alert("You have to buy a personal workout first, go to the Prices tab");
-                })
-            }
-            else {
-                eventCell.addEventListener("click", () => {
-                    // what to do on click on the event:
-                    alert("You have to buy an Entry Ticket first, go to the Prices tab");
-                })
-            }
+            eventCell.addEventListener("click", () => {
+                // what to do on click on the event:
+                alert("You have to buy an Entry Ticket first, go to the Prices tab");
+            })
         }
         for (let i = eventMoment.hour() + 0.5; i < eventMoment.hour() + event.duration; i += 0.5) {
             let halfHourCell = document.querySelector(`#day-${eventMoment.day()}-hour-${i * 10}`); // FIXME: 0.5 doesnt parss right

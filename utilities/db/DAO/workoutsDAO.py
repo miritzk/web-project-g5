@@ -15,6 +15,7 @@ class WorkoutsDAO(metaclass=Singleton):
     def __init__(self):
         self.db_manager = DBManager()
 
+    # get workouts schedule for populating the calendar
     def getWorkoutsByDates(self, startDate, endDate):
         ans = self.db_manager.fetch("""
         select w.*,
@@ -38,6 +39,7 @@ class WorkoutsDAO(metaclass=Singleton):
         """, (startDate, endDate))
         return [Workout.Workout(i[0], i[1], i[7], i[5], i[4]) for i in ans]
 
+    # checks whether the customer is capable to order
     def canOrder(self, email):
         ans = self.db_manager.fetch("""
         select CustomerEmail,
@@ -49,6 +51,7 @@ class WorkoutsDAO(metaclass=Singleton):
         """, (email,))
         return {'personal': ans[0][1] > 0, 'other': ans[0][2] > 0}
 
+    # book a personal workout, by using the oldest 'personal-workout' entry ticket available
     def order_class_personal(self, email, workoutTime, workoutType):
         ticketId = self.db_manager.fetch("""
         select min(TicketId) as minTicketID
@@ -71,6 +74,7 @@ class WorkoutsDAO(metaclass=Singleton):
         insert into workoutsintickets values (%s, %s, %s);
         """, (ticketId, workoutTime, workoutType))
 
+    # book a workout (except for personal), by using the oldest entry ticket available
     def order_class_other(self, email, workoutTime, workoutType):
         ticketId = self.db_manager.fetch("""
         select min(TicketId) as minTicketID
@@ -91,3 +95,18 @@ class WorkoutsDAO(metaclass=Singleton):
         self.db_manager.commit("""
         insert into workoutsintickets values (%s, %s, %s);
         """, (ticketId, workoutTime, workoutType))
+
+    # checks if a customer was already assigned to a specific workout
+    def check_customer_assignee(self, email, workoutTime, workoutType):
+        ans = self.db_manager.fetch("""
+        select WorkoutDT,
+               WorkoutType,
+               CustomerEmail
+        from workoutsintickets wt
+        join userentrytickets u
+            on wt.TicketId = u.TicketId
+        where WorkoutDT = %s
+        and WorkoutType = %s
+        and CustomerEmail = %s
+        """, (workoutTime, workoutType, email))
+        return ''
