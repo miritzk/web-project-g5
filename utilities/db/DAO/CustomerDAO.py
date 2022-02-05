@@ -14,6 +14,7 @@ class CustomerDAO(metaclass=Singleton):
     def __init__(self):
         self.db_manager = DBManager()
 
+    # creates a new customer in the db
     def create(self, customer: Customer) -> bool:  # returns true if customer was created
         ans = self.db_manager.commit("""
             INSERT INTO customers ( Email, FullName, JoinDate, Password, PhoneNumber, AddressCity, AddressStreet, AddressApartmentNum, AddressPostalCode)
@@ -22,6 +23,7 @@ class CustomerDAO(metaclass=Singleton):
               customer.city, customer.street, customer.apartmentNum, customer.postalCode))
         return ans == 1
 
+    # finds a customer in the db by its email
     def find_by_email(self, email: str) -> Customer:
         ans = self.db_manager.fetch("""
             SELECT * FROM customers WHERE Email = %s
@@ -31,6 +33,7 @@ class CustomerDAO(metaclass=Singleton):
         ans = ans[0]
         return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8], ans[9], ans[10], ans[11], ans[12], ans[13], ans[14])
 
+    # finds a customer in the db by its full name
     def find_by_name(self, name: str):
         ans = self.db_manager.fetch("""
             SELECT * FROM customers WHERE FullName = %s
@@ -39,6 +42,7 @@ class CustomerDAO(metaclass=Singleton):
             return None
         return [Customer(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14]) for i in ans]
 
+    # checks login details in the db
     def login(self, email: str, password: str) -> Customer:
         ans = self.db_manager.fetch("""
             SELECT * FROM customers WHERE Email = %s AND Password = %s
@@ -48,6 +52,7 @@ class CustomerDAO(metaclass=Singleton):
         ans = ans[0]
         return Customer.Customer(ans[0], ans[1], ans[2], ans[3], ans[4], ans[5], ans[6], ans[7], ans[8], ans[9], ans[10], ans[11], ans[12], ans[13], ans[14])
 
+    # update user details in the db
     def update_details(self, fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email) -> bool:
         ans = self.db_manager.commit("""
             UPDATE customers 
@@ -57,6 +62,7 @@ class CustomerDAO(metaclass=Singleton):
         """, (fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email))
         return ans == 1
 
+    # update user credit card info in the db
     def update_card_info(self, NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email) -> bool:
         ans = self.db_manager.commit("""
             UPDATE customers 
@@ -65,6 +71,7 @@ class CustomerDAO(metaclass=Singleton):
         """, (NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email))
         return ans == 1
 
+    # get all user's entry tickets (its purchases)
     def retrieve_entry_tickets(self, email):
         ans = self.db_manager.fetch("""
             select TicketId, u.OrderID, TicketType, Price, o.PurchaseDate, NumOfEntriesLeft
@@ -76,6 +83,7 @@ class CustomerDAO(metaclass=Singleton):
         """, (email,))
         return ans
 
+    # get all user's booked workouts
     def retrieve_workouts(self, email):
         ans = self.db_manager.fetch("""
             select w.TicketId, w.WorkoutType, w.WorkoutDT

@@ -32,15 +32,19 @@ class Customer:
 def get_customer_by_email(email):
     return CustomerDAO.CustomerDAO().find_by_email(email)
 
+# update personal details
 def update_details(fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email):
     return CustomerDAO.CustomerDAO().update_details(fullName, password, phoneNumber, addressCity, addressStreet, addressApartmentNum, addressPostalCode, email)
 
+# update credit card details
 def update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email):
     return CustomerDAO.CustomerDAO().update_card_info(NameOnCard, CardOwnerID, CreditCardNumber, ExpMonth, ExpYear, CVV, email)
 
+# login to website
 def login(email: str, password: str):
     return CustomerDAO.CustomerDAO().login(email, password)
 
+# register to website
 def register(email: str, fullName: str, password: str, phoneNumber: str, city: str, street: str,
              apartmentNum: int, postalCode: str):
     customer = Customer(email, fullName, datetime.date.today(), password, phoneNumber, city, street, apartmentNum,
