@@ -19,9 +19,15 @@ def get_events():
 def order_class_route():
     data = json.loads(request.data)
     print(data['workoutTime'])
-    order_class(session['user'], data['workoutTime'], data['workoutType'])
-    return {}
+    ans = order_class(session['user'], data['workoutTime'], data['workoutType'])
+    return {
+        'status':ans
+    }
 
 @calendar.route('/calendar')
 def index():
+    try:
+        session['user']
+    except:
+        session['user'] = ''
     return render_template('calendar.html')

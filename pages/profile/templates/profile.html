@@ -24,8 +24,9 @@
             <!-- menuTabs -->
             <div class="menuTabs">
                 <button class="tablinks" onclick="openTab(event, 'My_Details')">My Details</button>
-                <button class="tablinks" onclick="openTab(event, 'Payment_Methods')">Payment methods</button>
-                <button class="tablinks" onclick="openTab(event, 'My_Orders')">My orders</button>
+                <button class="tablinks" onclick="openTab(event, 'Payment_Methods')">Payment Methods</button>
+                <button class="tablinks" onclick="openTab(event, 'My_Orders')">My Entry Ticktes</button>
+                <button class="tablinks" onclick="openTab(event, 'My_Workouts')">My Workouts</button>
             </div>
             <!-- end of menuTabs -->
 
@@ -145,7 +146,39 @@
             </div>
 
             <div id="My_Orders" class="tabcontent" style="display: none">
-                <h3>My orders</h3>
+                <h3>My Ticket Entries</h3>
+                <hr>
+                <div class="tabcontent_grid_container">
+                    <div class="info_container">
+                        <table>
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Order Date</th>
+                                <th>Product Type</th>
+                                <th>Order Price</th>
+                                <th>Entries Left</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>12/11/21</td>
+                                <td>Individual training</td>
+                                <td>40 ILS</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>14/11/21</td>
+                                <td>Individual training</td>
+                                <td>40 ILS</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="My_Workouts" class="tabcontent" style="display: none">
+                <h3>My Workouts</h3>
                 <hr>
                 <div class="tabcontent_grid_container">
                     <div class="info_container">

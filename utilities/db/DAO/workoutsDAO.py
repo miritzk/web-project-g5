@@ -109,4 +109,4 @@ class WorkoutsDAO(metaclass=Singleton):
         and WorkoutType = %s
         and CustomerEmail = %s
         """, (workoutTime, workoutType, email))
-        return ''
+        return len(ans) == 0
