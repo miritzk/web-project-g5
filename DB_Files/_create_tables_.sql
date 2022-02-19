@@ -1,3 +1,5 @@
+# CREATE SCHEMA 'web-project-g5';
+
 create table customers
 (
     Email varchar(40) not null
@@ -21,8 +23,7 @@ create table customers
 
 create table orders
 (
-    OrderId int auto_increment
-        primary key,
+    OrderId int primary key,
     CustomerEmail varchar(40) not null,
     PurchaseDate datetime not null,
     constraint CustomerEmail___fk
@@ -100,12 +101,12 @@ create table workoutsInTickets
         foreign key (WorkoutDT) references workouts (DateTime)
 );
 
--- drop table workoutsInTickets;
--- drop table userEntryTickets;
--- drop table entryTickets;
--- drop table workouts;
--- drop table recordedWorkouts;
--- drop table instructors;
--- drop table orders;
--- drop table customers;
+# drop table workoutsInTickets;
+# drop table userEntryTickets;
+# drop table entryTickets;
+# drop table workouts;
+# drop table recordedWorkouts;
+# drop table instructors;
+# drop table orders;
+# drop table customers;
 
